@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// Dashboard admin. Only one is needed, but the model allows more.
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+/// Singleton row (id = 1) holding everything shown in the hero / contact areas.
+model Profile {
+  id               Int      @id @default(1)
+  nameEn           String
+  nameAr           String
+  titleEn          String
+  titleAr          String
+  taglineEn        String
+  taglineAr        String
+  summaryEn        String
+  summaryAr        String
+  locationEn       String
+  locationAr       String
+  relocationEn     String   @default("")
+  relocationAr     String   @default("")
+  email            String
+  phone            String
+  linkedin         String   @default("")
+  cvUrl            String   @default("")
+  updatedAt        DateTime @updatedAt
+}
+
+model Experience {
+  id            String    @id @default(cuid())
+  companyEn     String
+  companyAr     String
+  roleEn        String
+  roleAr        String
+  locationEn    String
+  locationAr    String
+  startDate     DateTime
+  endDate       DateTime?
+  highlightsEn  String[]
+  highlightsAr  String[]
+  sortOrder     Int       @default(0)
+  createdAt     DateTime  @default(now())
+
+  @@index([sortOrder])
+}
+
+model Certification {
+  id          String   @id @default(cuid())
+  nameEn      String
+  nameAr      String
+  issuerEn    String
+  issuerAr    String
+  year        Int?
+  credentialUrl String @default("")
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  @@index([sortOrder])
+}
+
+model Education {
+  id            String   @id @default(cuid())
+  institutionEn String
+  institutionAr String
+  degreeEn      String
+  degreeAr      String
+  noteEn        String   @default("")
+  noteAr        String   @default("")
+  graduationYear Int
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+
+  @@index([sortOrder])
+}
+
+/// Skills are grouped. itemsEn[i] and itemsAr[i] are the same skill in two languages.
+model SkillGroup {
+  id        String   @id @default(cuid())
+  titleEn   String
+  titleAr   String
+  itemsEn   String[]
+  itemsAr   String[]
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([sortOrder])
+}
+
+/// Messages sent through the public contact form.
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  body      String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([read, createdAt])
+}

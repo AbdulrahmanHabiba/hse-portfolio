@@ -1,0 +1,215 @@
+{
+  "common": { "skipToContent": "Skip to content" },
+  "nav": {
+    "home": "Home",
+    "journey": "Journey",
+    "credentials": "Credentials",
+    "practice": "Field practice",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "footer": { "rights": "All rights reserved." },
+  "hero": {
+    "seeCredentials": "See credentials",
+    "getInTouch": "Get in touch",
+    "tag": {
+      "status": "Inspected",
+      "inspector": "Inspected by",
+      "role": "Role",
+      "site": "Based in",
+      "certified": "Certified",
+      "frequency": "Site inspections",
+      "frequencyValue": "Every working day",
+      "since": "On site since"
+    }
+  },
+  "home": {
+    "currentRole": "Current role",
+    "present": "Present",
+    "fullJourney": "Read the full journey",
+    "credentialsTitle": "Credentials",
+    "credentialsIntro": "International and national safety certifications, with the body that issued each one.",
+    "allCredentials": "All credentials",
+    "viewCredential": "View credential",
+    "ctaTitle": "Need an HSE officer on your site?",
+    "ctaButton": "Send a message"
+  },
+  "journey": {
+    "title": "Journey",
+    "intro": "The path so far: where I studied and where I work on site.",
+    "present": "Present",
+    "current": "Current",
+    "graduated": "Graduated"
+  },
+  "credentials": {
+    "title": "Credentials",
+    "intro": "Certifications and education, listed with the issuing body.",
+    "certifications": "Certifications",
+    "education": "Education",
+    "view": "View credential"
+  },
+  "practice": {
+    "title": "Field practice",
+    "intro": "The standards I work to and the routines I run on site, written as a checklist."
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Hiring for a site or a project? Send a message and I will reply by email.",
+    "details": {
+      "email": "Email",
+      "phone": "Phone",
+      "linkedin": "LinkedIn",
+      "linkedinCta": "Open my profile",
+      "location": "Location"
+    },
+    "form": {
+      "name": "Your name",
+      "email": "Your email",
+      "message": "Message",
+      "send": "Send message",
+      "sending": "Sending...",
+      "invalid": "Check this field.",
+      "invalidMessage": "Write at least 10 characters.",
+      "sentTitle": "Message sent",
+      "sentBody": "Thank you. I will reply to the email you entered."
+    }
+  },
+  "notFound": {
+    "title": "This page does not exist",
+    "body": "The link may be old or mistyped. Go back to the home page and start from there.",
+    "back": "Back to home"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "body": "The page could not load. Try again in a moment.",
+    "retry": "Try again"
+  },
+  "setup": {
+    "title": "This site has no content yet",
+    "body": "Sign in to the dashboard and fill in the profile, or run the seed script to load the CV data.",
+    "cta": "Open dashboard"
+  },
+  "dashboard": {
+    "nav": {
+      "brand": "Dashboard",
+      "overview": "Overview",
+      "profile": "Profile",
+      "experience": "Experience",
+      "credentials": "Credentials",
+      "skills": "Field practice",
+      "messages": "Messages",
+      "viewSite": "View site",
+      "signOut": "Sign out"
+    },
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Manage everything shown on the site.",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "submitting": "Signing in...",
+      "invalid": "Email or password is incorrect."
+    },
+    "overview": {
+      "title": "Overview",
+      "description": "What is published on the site right now.",
+      "experience": "Experience entries",
+      "certifications": "Certifications",
+      "education": "Education entries",
+      "skills": "Practice groups",
+      "unread": "Unread messages",
+      "noProfile": "The profile is empty, so the public site shows a setup notice.",
+      "setupProfile": "Fill in the profile"
+    },
+    "common": {
+      "add": "Add new",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save changes",
+      "saving": "Saving...",
+      "cancel": "Cancel",
+      "confirmDelete": "Delete this item? This cannot be undone.",
+      "empty": "Nothing here yet. Add the first one.",
+      "present": "present",
+      "english": "English",
+      "arabic": "Arabic",
+      "orderHint": "Lower numbers appear first.",
+      "linesHint": "One item per line. Keep the same order in both languages."
+    },
+    "feedback": {
+      "saved": "Saved. The site is updated.",
+      "validation": "Some fields need attention. Check the highlighted fields."
+    },
+    "fields": {
+      "name": "Full name",
+      "jobTitle": "Job title",
+      "tagline": "Headline",
+      "summary": "Summary",
+      "location": "Location",
+      "relocation": "Relocation note",
+      "email": "Email",
+      "phone": "Phone",
+      "linkedin": "LinkedIn URL",
+      "cvUrl": "CV link",
+      "company": "Company",
+      "role": "Role",
+      "startDate": "Start month",
+      "endDate": "End month",
+      "highlights": "Responsibilities",
+      "sortOrder": "Order",
+      "certName": "Certificate name",
+      "issuer": "Issued by",
+      "year": "Year",
+      "credentialUrl": "Credential link",
+      "institution": "Institution",
+      "degree": "Degree",
+      "note": "Note",
+      "graduationYear": "Graduation year",
+      "skillTitle": "Group title",
+      "items": "Items"
+    },
+    "profile": {
+      "title": "Profile",
+      "description": "The hero, the inspection tag and the contact details come from here.",
+      "taglineHint": "The large headline on the home page.",
+      "relocationHint": "Shown next to your location. Leave empty to hide it.",
+      "cvHint": "Optional. A public link to your CV file."
+    },
+    "experience": {
+      "title": "Experience",
+      "description": "Jobs shown on the home page and the Journey page.",
+      "new": "New experience",
+      "edit": "Edit experience",
+      "endHint": "Leave empty for your current job."
+    },
+    "credentials": {
+      "title": "Credentials",
+      "description": "Certifications and education shown on the Credentials page.",
+      "certifications": "Certifications",
+      "education": "Education",
+      "newCertification": "New certification",
+      "editCertification": "Edit certification",
+      "newEducation": "New education entry",
+      "editEducation": "Edit education entry",
+      "yearHint": "Leave empty if you do not want a year shown.",
+      "noteHint": "Optional, for example grade or honours."
+    },
+    "skills": {
+      "title": "Field practice",
+      "description": "Checklist groups shown on the Field practice page.",
+      "new": "New group",
+      "edit": "Edit group",
+      "itemsHint": "One skill per line. Line 1 in English matches line 1 in Arabic.",
+      "itemsCount": "items"
+    },
+    "messages": {
+      "title": "Messages",
+      "description": "Messages sent from the contact form.",
+      "empty": "No messages yet.",
+      "unread": "Unread",
+      "markRead": "Mark as read",
+      "markUnread": "Mark as unread"
+    }
+  }
+}

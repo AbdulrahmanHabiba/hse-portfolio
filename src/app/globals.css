@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens.
+ * The palette comes from the subject itself: concrete (paper), steel (ink),
+ * safety yellow (action) and the scaffold-tag status colours (safe / stop).
+ */
+@theme {
+  --color-paper: #e8ebed;
+  --color-surface: #f6f8f8;
+  --color-ink: #16222e;
+  --color-steel: #4a5865;
+  --color-line: #c3cad0;
+  --color-hazard: #f2b705;
+  --color-hazard-soft: #fbe8a6;
+  --color-safe: #1a7a4f;
+  --color-safe-soft: #d6ece1;
+  --color-stop: #b3302a;
+
+  --font-display: "Readex Pro Variable", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans Arabic", system-ui, sans-serif;
+
+  --animate-tag-swing: tag-swing 2.4s cubic-bezier(0.3, 0.6, 0.3, 1) 0.2s both;
+
+  @keyframes tag-swing {
+    0% { transform: rotate(-7deg); }
+    22% { transform: rotate(5deg); }
+    44% { transform: rotate(-3deg); }
+    66% { transform: rotate(1.6deg); }
+    100% { transform: rotate(0deg); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  /* Arabic letters are joined: negative tracking breaks them apart. */
+  [lang="ar"] h1,
+  [lang="ar"] h2,
+  [lang="ar"] h3 {
+    letter-spacing: 0;
+    line-height: 1.4;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--color-hazard);
+    color: var(--color-ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility tag-hang {
+  transform-origin: 50% 0;
+}
+
+/* Phone numbers and emails must stay left-to-right inside RTL pages. */
+@utility ltr-island {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
