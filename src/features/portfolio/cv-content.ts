@@ -18,7 +18,7 @@ export const cvProfile = {
   email: "abdulrahmanhabibh@gmail.com",
   phone: "+201113951795",
   linkedin: "https://linkedin.com/in/abdulrahman-hasan-habiba",
-  cvUrl: "",
+  cvUrl: "https://drive.google.com/file/d/1BHXfHaFG1TsC897kc8iIiXsy4aKoPLWf/view?usp=sharing",
 };
 export const cvExperience = [{
   companyEn: "Global Company for General Contracting, Engineering Services & Scaffolding",
@@ -51,6 +51,17 @@ export const cvExperience = [{
     "حضور جلسات تدريبية داخل الموقع في السلامة المهنية وإدارة المخاطر."
   ]
 }];
+// Programming experience follows graduation and ends before the HSE position.
+cvExperience.push({
+  companyEn: "Independent Web Development", companyAr: "تطوير مواقع وتطبيقات الويب بشكل مستقل",
+  roleEn: "Frontend / Full-Stack Web Developer", roleAr: "مطور واجهات وتطبيقات ويب",
+  locationEn: "Egypt · Remote", locationAr: "مصر · عن بُعد",
+  startDate: new Date("2023-08-01T00:00:00.000Z"),
+  endDate: new Date("2025-11-01T00:00:00.000Z"),
+  sortOrder: 1,
+  highlightsEn: ["Built responsive web interfaces with React, Next.js, JavaScript and TypeScript.", "Worked with APIs, databases and authentication in web application projects.", "Created portfolio, ordering and e-commerce applications."],
+  highlightsAr: ["تطوير واجهات ويب متجاوبة باستخدام React وNext.js وJavaScript وTypeScript.", "التعامل مع واجهات API وقواعد البيانات والمصادقة في تطبيقات الويب.", "تنفيذ مشاريع بورتفوليو وطلب الطعام والتجارة الإلكترونية."]
+});
 export const cvCertifications = [
   { nameEn: "IOSH Managing Safely (UK)", nameAr: "IOSH إدارة السلامة بأمان (المملكة المتحدة)", issuerEn: "IOSH; HSE Professional — Trainer: Eng. Abdelrahman Adel", issuerAr: "IOSH؛ HSE Professional — المدرب: م. عبد الرحمن عادل" },
   { nameEn: "ISO 45001:2018 Internal Auditor — Training Attended", nameAr: "ISO 45001:2018 مراجع داخلي — حضور تدريب", issuerEn: "EasyT — Eng. Hossam Mostafa Eid", issuerAr: "EasyT — م. حسام مصطفى عيد" },
@@ -75,5 +86,5 @@ export const cvSkillGroups = [
   { titleEn: "Site safety and risk awareness", titleAr: "السلامة الميدانية والوعي بالمخاطر", itemsEn: ["Hazard identification and risk assessment reviews", "Scaffolding and work-at-height safety monitoring", "Safe access, housekeeping and material storage", "Visual checks of tools and equipment"], itemsAr: ["تحديد الأخطار والمشاركة في مراجعة تقييم المخاطر", "متابعة سلامة السقالات والعمل على ارتفاع", "سلامة الممرات وترتيب الموقع وتخزين المواد", "الفحص البصري للأدوات والمعدات"] },
   { titleEn: "Communication and training", titleAr: "التواصل والتدريب", itemsEn: ["Daily toolbox talks", "Communicating controls to workers and supervisors", "Following up on unsafe conditions", "Fire safety, first aid and emergency preparedness training"], itemsAr: ["محاضرات السلامة اليومية", "التواصل مع العمال والمشرفين بشأن إجراءات التحكم", "متابعة الحالات غير الآمنة", "التدريب على مكافحة الحريق والإسعافات والطوارئ"] },
   { titleEn: "Computer applications", titleAr: "تطبيقات الحاسب", itemsEn: ["Microsoft Excel", "Microsoft Word and PowerPoint", "Spreadsheets, documentation and site reporting"], itemsAr: ["مايكروسوفت إكسل", "مايكروسوفت وورد وباوربوينت", "الجداول الإلكترونية والتوثيق وتقارير الموقع"] },
-  { titleEn: "Technical foundation and languages", titleAr: "الخلفية التقنية واللغات", itemsEn: ["Bachelor of Science: Computer Science and Mathematics", "Python and JavaScript", "University-level physics and basic electrical principles", "Arabic: Native · English: B1 · German: A1 learner"], itemsAr: ["بكالوريوس العلوم: علوم الحاسب والرياضيات", "Python وJavaScript", "فيزياء جامعية وأساسيات الكهرباء", "العربية: اللغة الأم · الإنجليزية: B1 · الألمانية: متعلم A1"] }
+  { titleEn: "Technical foundation and languages", titleAr: "الخلفية التقنية واللغات", itemsEn: ["Bachelor of Science: Computer Science and Mathematics", "Python, JavaScript and TypeScript", "React and Next.js web development", "University-level physics and basic electrical principles", "Arabic: Native", "English: B1", "German: A1 learner"], itemsAr: ["بكالوريوس العلوم: علوم الحاسب والرياضيات", "Python وJavaScript وTypeScript", "تطوير الويب باستخدام React وNext.js", "فيزياء جامعية وأساسيات الكهرباء", "العربية: اللغة الأم", "الإنجليزية: B1", "الألمانية: متعلم A1"] }
 ].map((g, sortOrder) => ({ ...g, sortOrder }));
