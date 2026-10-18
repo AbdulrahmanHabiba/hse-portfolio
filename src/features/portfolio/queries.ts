@@ -89,6 +89,7 @@ export const getExperience = unstable_cache(
       const rows = await db.experience.findMany({
         orderBy: [{ sortOrder: "asc" }, { startDate: "desc" }],
       });
+      if (!rows.length) return experienceFromCv(locale);
       return rows.map((r) => ({
         id: r.id,
         company: pick(locale, r.companyEn, r.companyAr),
@@ -113,6 +114,7 @@ export const getCertifications = unstable_cache(
     try {
       if (!process.env.DATABASE_URL) return certsFromCv(locale);
       const rows = await db.certification.findMany({ orderBy: [{ sortOrder: "asc" }, { createdAt: "asc" }] });
+      if (!rows.length) return certsFromCv(locale);
       return rows.map((r) => ({
         id: r.id,
         name: pick(locale, r.nameEn, r.nameAr),
@@ -135,6 +137,7 @@ export const getEducation = unstable_cache(
     try {
       if (!process.env.DATABASE_URL) return educationFromCv(locale);
       const rows = await db.education.findMany({ orderBy: [{ sortOrder: "asc" }, { graduationYear: "desc" }] });
+      if (!rows.length) return educationFromCv(locale);
       return rows.map((r) => ({
         id: r.id,
         institution: pick(locale, r.institutionEn, r.institutionAr),
@@ -157,6 +160,7 @@ export const getSkillGroups = unstable_cache(
     try {
       if (!process.env.DATABASE_URL) return skillsFromCv(locale);
       const rows = await db.skillGroup.findMany({ orderBy: [{ sortOrder: "asc" }, { createdAt: "asc" }] });
+      if (!rows.length) return skillsFromCv(locale);
       return rows.map((r) => ({
         id: r.id,
         title: pick(locale, r.titleEn, r.titleAr),
