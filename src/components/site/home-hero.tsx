@@ -31,6 +31,12 @@ export async function HomeHero({ profile, certifications, since }: Props) {
             <Link href="/contact" className={buttonStyles({ variant: "secondary" })}>
               {t("getInTouch")}
             </Link>
+            {profile.cvUrl ? (
+              <a href={profile.cvUrl} target="_blank" rel="noopener noreferrer" className={buttonStyles({ variant: "secondary" })} aria-label={t("downloadCv")}>
+                <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v12m-4-4 4 4 4-4M4 17v4h16v-4"/></svg>
+                {t("downloadCv")}
+              </a>
+            ) : null}
           </div>
 
           <p className="mt-9 flex items-start gap-2 text-sm text-steel">
