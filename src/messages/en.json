@@ -14,11 +14,11 @@
     "seeCredentials": "See credentials",
     "getInTouch": "Get in touch",
     "tag": {
-      "status": "Inspected",
-      "inspector": "Inspected by",
+      "status": "HSE Profile",
+      "inspector": "Name",
       "role": "Role",
       "site": "Based in",
-      "certified": "Certified",
+      "certified": "Training & credentials",
       "frequency": "Site inspections",
       "frequencyValue": "Every working day",
       "since": "On site since"
@@ -29,7 +29,7 @@
     "present": "Present",
     "fullJourney": "Read the full journey",
     "credentialsTitle": "Credentials",
-    "credentialsIntro": "International and national safety certifications, with the body that issued each one.",
+    "credentialsIntro": "Safety qualifications, completed training and attendance records, with providers clearly identified.",
     "allCredentials": "All credentials",
     "viewCredential": "View credential",
     "ctaTitle": "Need an HSE officer on your site?",
@@ -44,14 +44,14 @@
   },
   "credentials": {
     "title": "Credentials",
-    "intro": "Certifications and education, listed with the issuing body.",
+    "intro": "Qualifications, safety training and education. Attendance-only courses are identified.",
     "certifications": "Certifications",
     "education": "Education",
     "view": "View credential"
   },
   "practice": {
     "title": "Field practice",
-    "intro": "The standards I work to and the routines I run on site, written as a checklist."
+    "intro": "Practical site responsibilities, training and technical skills based on my CV."
   },
   "contact": {
     "title": "Contact",
