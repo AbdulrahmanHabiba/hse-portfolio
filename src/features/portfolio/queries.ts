@@ -1,4 +1,5 @@
 import "server-only";
+import { cvProfile, cvExperience, cvCertifications, cvEducation, cvSkillGroups } from "./cv-content";
 import { unstable_cache } from "next/cache";
 import { db } from "@/lib/db";
 import type { Locale } from "@/i18n/routing";
@@ -21,8 +22,40 @@ const options = { tags: [PORTFOLIO_TAG] };
 
 const pick = (locale: Locale, en: string, ar: string) => (locale === "ar" ? ar : en);
 
+
+const useCv = () => process.env.PORTFOLIO_CONTENT_SOURCE !== "database";
+const profileFromCv = (locale: Locale): ProfileView => ({
+ name: pick(locale, cvProfile.nameEn, cvProfile.nameAr),
+ title: pick(locale, cvProfile.titleEn, cvProfile.titleAr),
+ tagline: pick(locale, cvProfile.taglineEn, cvProfile.taglineAr),
+ summary: pick(locale, cvProfile.summaryEn, cvProfile.summaryAr),
+ location: pick(locale, cvProfile.locationEn, cvProfile.locationAr),
+ relocation: "", email: cvProfile.email, phone: cvProfile.phone,
+ linkedin: cvProfile.linkedin, cvUrl: cvProfile.cvUrl
+});
+const experienceFromCv = (locale: Locale): ExperienceView[] => cvExperience.map((e,i) => ({
+ id: "cv-experience-"+i, company: pick(locale,e.companyEn,e.companyAr),
+ role: pick(locale,e.roleEn,e.roleAr), location: pick(locale,e.locationEn,e.locationAr),
+ startDate: e.startDate.toISOString(), endDate: null,
+ highlights: locale === "ar" ? e.highlightsAr : e.highlightsEn
+}));
+const certsFromCv = (locale: Locale): CertificationView[] => cvCertifications.map((e,i) => ({
+ id: "cv-cert-"+i, name: pick(locale,e.nameEn,e.nameAr),
+ issuer: pick(locale,e.issuerEn,e.issuerAr), year: null, credentialUrl: ""
+}));
+const educationFromCv = (locale: Locale): EducationView[] => cvEducation.map((e,i) => ({
+ id: "cv-education-"+i, institution: pick(locale,e.institutionEn,e.institutionAr),
+ degree: pick(locale,e.degreeEn,e.degreeAr), note: pick(locale,e.noteEn,e.noteAr),
+ graduationYear: e.graduationYear
+}));
+const skillsFromCv = (locale: Locale): SkillGroupView[] => cvSkillGroups.map((e,i) => ({
+ id: "cv-skill-"+i, title: pick(locale,e.titleEn,e.titleAr),
+ items: locale === "ar" ? e.itemsAr : e.itemsEn
+}));
+
 export const getProfile = unstable_cache(
   async (locale: Locale): Promise<ProfileView | null> => {
+    if (useCv()) return profileFromCv(locale);
     try {
       if (!process.env.DATABASE_URL) return null;
       const p = await db.profile.findUnique({ where: { id: 1 } });
@@ -50,6 +83,7 @@ export const getProfile = unstable_cache(
 
 export const getExperience = unstable_cache(
   async (locale: Locale): Promise<ExperienceView[]> => {
+    if (useCv()) return experienceFromCv(locale);
     try {
       if (!process.env.DATABASE_URL) return [];
       const rows = await db.experience.findMany({
@@ -75,6 +109,7 @@ export const getExperience = unstable_cache(
 
 export const getCertifications = unstable_cache(
   async (locale: Locale): Promise<CertificationView[]> => {
+    if (useCv()) return certsFromCv(locale);
     try {
       if (!process.env.DATABASE_URL) return [];
       const rows = await db.certification.findMany({ orderBy: [{ sortOrder: "asc" }, { createdAt: "asc" }] });
@@ -96,6 +131,7 @@ export const getCertifications = unstable_cache(
 
 export const getEducation = unstable_cache(
   async (locale: Locale): Promise<EducationView[]> => {
+    if (useCv()) return educationFromCv(locale);
     try {
       if (!process.env.DATABASE_URL) return [];
       const rows = await db.education.findMany({ orderBy: [{ sortOrder: "asc" }, { graduationYear: "desc" }] });
@@ -117,6 +153,7 @@ export const getEducation = unstable_cache(
 
 export const getSkillGroups = unstable_cache(
   async (locale: Locale): Promise<SkillGroupView[]> => {
+    if (useCv()) return skillsFromCv(locale);
     try {
       if (!process.env.DATABASE_URL) return [];
       const rows = await db.skillGroup.findMany({ orderBy: [{ sortOrder: "asc" }, { createdAt: "asc" }] });
