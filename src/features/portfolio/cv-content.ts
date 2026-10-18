@@ -20,7 +20,7 @@ export const cvProfile = {
   linkedin: "https://linkedin.com/in/abdulrahman-hasan-habiba",
   cvUrl: "https://drive.google.com/file/d/1BHXfHaFG1TsC897kc8iIiXsy4aKoPLWf/view?usp=sharing",
 };
-export const cvExperience = [{
+export const cvExperience: Array<{ companyEn: string; companyAr: string; roleEn: string; roleAr: string; locationEn: string; locationAr: string; startDate: Date; endDate: Date | null; sortOrder: number; highlightsEn: string[]; highlightsAr: string[] }> = [{
   companyEn: "Global Company for General Contracting, Engineering Services & Scaffolding",
   companyAr: "الشركة العالمية للمقاولات العامة والخدمات الهندسية والسقالات",
   roleEn: "Safety Engineer — TITAN Cement (APCC), El-Max",
