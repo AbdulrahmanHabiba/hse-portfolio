@@ -60,3 +60,14 @@ src/
 - Skills/responsibilities are entered one per line; line N in English must match line N in Arabic.
 - Certification years are empty because the CV does not list them. Add them in the dashboard if you want them shown.
 - The contact form has a honeypot but no rate limiting yet; add one (e.g. Upstash) before heavy traffic.
+
+
+## CV content source (October 2026 refresh)
+
+The public English and Arabic pages display the verified CV copy in `src/features/portfolio/cv-content.ts` by default. This prevents pre-existing database records from displaying outdated experience dates or overstated duties after deployment.
+
+- The CMS/dashboard and its existing database records are preserved, but public pages use the CV copy by default.
+- To publish live dashboard edits instead, set `PORTFOLIO_CONTENT_SOURCE=database` in deployment environment variables and update the database content from the dashboard.
+- `npm run db:seed` initializes missing rows only; it **does not** overwrite existing experience, certifications, education, or skills. Do not assume a seed run synchronizes live records.
+- ISO 45001 is identified as **Training Attended**, not a completed certificate. Only attach credential URLs for documents actually issued.
+- The source PDF has not been committed to the repository; `cvUrl` remains empty until a publicly accessible CV is supplied.
