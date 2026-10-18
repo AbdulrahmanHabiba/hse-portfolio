@@ -36,7 +36,7 @@ const profileFromCv = (locale: Locale): ProfileView => ({
 const experienceFromCv = (locale: Locale): ExperienceView[] => cvExperience.map((e,i) => ({
  id: "cv-experience-"+i, company: pick(locale,e.companyEn,e.companyAr),
  role: pick(locale,e.roleEn,e.roleAr), location: pick(locale,e.locationEn,e.locationAr),
- startDate: e.startDate.toISOString(), endDate: null,
+ startDate: e.startDate.toISOString(), endDate: e.endDate ? e.endDate.toISOString() : null,
  highlights: locale === "ar" ? e.highlightsAr : e.highlightsEn
 }));
 const certsFromCv = (locale: Locale): CertificationView[] => cvCertifications.map((e,i) => ({
@@ -57,9 +57,9 @@ export const getProfile = unstable_cache(
   async (locale: Locale): Promise<ProfileView | null> => {
     if (useCv()) return profileFromCv(locale);
     try {
-      if (!process.env.DATABASE_URL) return null;
+      if (!process.env.DATABASE_URL) return profileFromCv(locale);
       const p = await db.profile.findUnique({ where: { id: 1 } });
-      if (!p) return null;
+      if (!p) return profileFromCv(locale);
       return {
         name: pick(locale, p.nameEn, p.nameAr),
         title: pick(locale, p.titleEn, p.titleAr),
@@ -74,7 +74,7 @@ export const getProfile = unstable_cache(
       };
     } catch (error) {
       console.error("[getProfile] Database query failed:", error);
-      return null;
+      return profileFromCv(locale);
     }
   },
   ["portfolio-profile"],
@@ -85,10 +85,11 @@ export const getExperience = unstable_cache(
   async (locale: Locale): Promise<ExperienceView[]> => {
     if (useCv()) return experienceFromCv(locale);
     try {
-      if (!process.env.DATABASE_URL) return [];
+      if (!process.env.DATABASE_URL) return experienceFromCv(locale);
       const rows = await db.experience.findMany({
         orderBy: [{ sortOrder: "asc" }, { startDate: "desc" }],
       });
+      if (!rows.length) return experienceFromCv(locale);
       return rows.map((r) => ({
         id: r.id,
         company: pick(locale, r.companyEn, r.companyAr),
@@ -100,7 +101,7 @@ export const getExperience = unstable_cache(
       }));
     } catch (error) {
       console.error("[getExperience] Database query failed:", error);
-      return [];
+      return experienceFromCv(locale);
     }
   },
   ["portfolio-experience"],
@@ -111,8 +112,9 @@ export const getCertifications = unstable_cache(
   async (locale: Locale): Promise<CertificationView[]> => {
     if (useCv()) return certsFromCv(locale);
     try {
-      if (!process.env.DATABASE_URL) return [];
+      if (!process.env.DATABASE_URL) return certsFromCv(locale);
       const rows = await db.certification.findMany({ orderBy: [{ sortOrder: "asc" }, { createdAt: "asc" }] });
+      if (!rows.length) return certsFromCv(locale);
       return rows.map((r) => ({
         id: r.id,
         name: pick(locale, r.nameEn, r.nameAr),
@@ -122,7 +124,7 @@ export const getCertifications = unstable_cache(
       }));
     } catch (error) {
       console.error("[getCertifications] Database query failed:", error);
-      return [];
+      return certsFromCv(locale);
     }
   },
   ["portfolio-certifications"],
@@ -133,8 +135,9 @@ export const getEducation = unstable_cache(
   async (locale: Locale): Promise<EducationView[]> => {
     if (useCv()) return educationFromCv(locale);
     try {
-      if (!process.env.DATABASE_URL) return [];
+      if (!process.env.DATABASE_URL) return educationFromCv(locale);
       const rows = await db.education.findMany({ orderBy: [{ sortOrder: "asc" }, { graduationYear: "desc" }] });
+      if (!rows.length) return educationFromCv(locale);
       return rows.map((r) => ({
         id: r.id,
         institution: pick(locale, r.institutionEn, r.institutionAr),
@@ -144,7 +147,7 @@ export const getEducation = unstable_cache(
       }));
     } catch (error) {
       console.error("[getEducation] Database query failed:", error);
-      return [];
+      return educationFromCv(locale);
     }
   },
   ["portfolio-education"],
@@ -155,8 +158,9 @@ export const getSkillGroups = unstable_cache(
   async (locale: Locale): Promise<SkillGroupView[]> => {
     if (useCv()) return skillsFromCv(locale);
     try {
-      if (!process.env.DATABASE_URL) return [];
+      if (!process.env.DATABASE_URL) return skillsFromCv(locale);
       const rows = await db.skillGroup.findMany({ orderBy: [{ sortOrder: "asc" }, { createdAt: "asc" }] });
+      if (!rows.length) return skillsFromCv(locale);
       return rows.map((r) => ({
         id: r.id,
         title: pick(locale, r.titleEn, r.titleAr),
@@ -164,7 +168,7 @@ export const getSkillGroups = unstable_cache(
       }));
     } catch (error) {
       console.error("[getSkillGroups] Database query failed:", error);
-      return [];
+      return skillsFromCv(locale);
     }
   },
   ["portfolio-skills"],
